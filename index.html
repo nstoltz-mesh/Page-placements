@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestion de Placements | Nicolas Stoltz — Conseiller financier, Québec</title>
+<meta name="description" content="Stratégies de placement personnalisées pour faire croître et protéger votre patrimoine. Analyse de profil, sélection de fonds et suivi continu — Québec.">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --vert-logo: #4e7a51;
+  --bleu-clair: #a5cfe3;
+  --vert-fonce: #00221c;
+  --teal: #018476;
+  --bleu-pale: #e7f6fc;
+  --blanc: #ffffff;
+  --gris-clair: #f5f9f5;
+  --texte: #1a1a1a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background-color: var(--gris-clair); color: var(--texte); line-height: 1.6; }
+
+/* HERO */
+.hero { width: 100%; background: linear-gradient(135deg, var(--vert-fonce) 0%, var(--teal) 100%); padding: 80px 32px 64px; text-align: center; }
+.hero-content { max-width: 900px; margin: 0 auto; }
+.hero-badge { display: inline-block; background: rgba(255,255,255,0.13); border: 1px solid rgba(255,255,255,0.25); color: var(--bleu-clair); padding: 6px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 24px; }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: var(--blanc); line-height: 1.2; margin-bottom: 20px; }
+.hero p { font-size: 1.15rem; color: var(--bleu-clair); margin-bottom: 40px; line-height: 1.7; max-width: 700px; margin-left: auto; margin-right: auto; }
+.hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* BOUTONS */
+.btn { display: inline-block; padding: 14px 32px; border-radius: 10px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
+.btn-primary { background: var(--bleu-clair); color: var(--vert-fonce); }
+.btn-primary:hover { background: var(--blanc); transform: translateY(-2px); }
+.btn-secondary { background: rgba(255,255,255,0.13); color: var(--blanc); border: 1px solid rgba(255,255,255,0.3); }
+.btn-secondary:hover { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.5); }
+
+/* LAYOUT */
+main { max-width: 1200px; margin: 0 auto; padding: 60px 24px; }
+.section-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 600; color: var(--vert-fonce); text-align: center; margin-bottom: 16px; }
+.section-subtitle { text-align: center; color: #666; font-size: 1rem; margin-bottom: 48px; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+/* CRÉDIBILITÉ */
+.credibility { background: var(--blanc); border-radius: 16px; padding: 32px 40px; margin-bottom: 64px; box-shadow: 0 2px 16px rgba(0,34,28,0.08); border-top: 4px solid var(--vert-logo); }
+.cred-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; text-align: center; }
+.cred-item { display: flex; flex-direction: column; align-items: center; }
+.cred-icon { width: 56px; height: 56px; border-radius: 50%; background: var(--gris-clair); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 12px; color: var(--teal); }
+.cred-label { font-size: 0.75rem; color: #999; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
+.cred-value { font-size: 1.05rem; font-weight: 600; color: var(--vert-fonce); line-height: 1.4; }
+.badge-pending { display: inline-block; background: #fff3cd; color: #856404; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; margin-left: 6px; font-weight: 500; }
+
+/* PHILOSOPHIE */
+.philosophie-section { background: var(--blanc); border-radius: 16px; padding: 48px; margin-bottom: 64px; box-shadow: 0 2px 16px rgba(0,34,28,0.07); border-top: 4px solid var(--teal); display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.philosophie-text h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--vert-fonce); margin-bottom: 20px; }
+.philosophie-text p { color: #555; font-size: 1rem; line-height: 1.8; margin-bottom: 16px; }
+.philosophie-points { display: flex; flex-direction: column; gap: 16px; }
+.philo-point { display: flex; align-items: flex-start; gap: 16px; background: var(--gris-clair); border-radius: 12px; padding: 18px; }
+.philo-icon { width: 44px; height: 44px; border-radius: 10px; background: linear-gradient(135deg, var(--vert-logo), var(--teal)); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: var(--blanc); flex-shrink: 0; }
+.philo-content h4 { font-size: 1rem; font-weight: 600; color: var(--vert-fonce); margin-bottom: 4px; }
+.philo-content p { font-size: 0.875rem; color: #666; margin: 0; line-height: 1.5; }
+
+/* CARDS */
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 64px; }
+.card { background: var(--blanc); border-radius: 14px; padding: 32px; box-shadow: 0 2px 16px rgba(0,34,28,0.07); border-top: 4px solid var(--vert-logo); transition: transform 0.3s ease, box-shadow 0.3s ease; display: block; text-decoration: none; color: inherit; }
+.card.teal-top { border-top-color: var(--teal); }
+.card-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--gris-clair); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 16px; color: var(--vert-logo); }
+.card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--vert-fonce); margin-bottom: 12px; font-weight: 600; }
+.card p { color: #555; font-size: 0.95rem; line-height: 1.65; margin-bottom: 0; }
+
+/* PROCESSUS */
+.processus-section { background: var(--blanc); border-radius: 16px; padding: 56px 48px; margin-bottom: 64px; box-shadow: 0 2px 16px rgba(0,34,28,0.07); }
+.processus-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; margin-top: 48px; position: relative; }
+.processus-grid::before { content: ''; position: absolute; top: 32px; left: 10%; right: 10%; height: 2px; background: linear-gradient(to right, var(--vert-logo), var(--teal)); z-index: 0; }
+.step { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 12px; position: relative; z-index: 1; }
+.step-number { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--vert-fonce), var(--teal)); color: var(--blanc); font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,34,28,0.2); }
+.step h4 { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: var(--vert-fonce); margin-bottom: 8px; font-weight: 600; }
+.step p { font-size: 0.82rem; color: #666; line-height: 1.5; }
+
+/* OUTILS */
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 64px; }
+.tool-card { background: var(--blanc); border-radius: 14px; padding: 28px 24px; box-shadow: 0 2px 16px rgba(0,34,28,0.07); position: relative; overflow: hidden; transition: transform 0.3s ease; text-decoration: none; color: inherit; display: block; }
+.tool-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(to right, var(--vert-logo), var(--teal)); }
+.tool-card:hover { transform: translateY(-3px); }
+.tool-icon { font-size: 2rem; margin-bottom: 12px; color: var(--teal); }
+.tool-card h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--vert-fonce); margin-bottom: 8px; font-weight: 600; }
+.tool-card p { font-size: 0.85rem; color: #666; line-height: 1.5; }
+
+/* TÉMOIGNAGES */
+.testimonials-section { background: var(--blanc); border-radius: 16px; padding: 48px; margin-bottom: 64px; box-shadow: 0 2px 16px rgba(0,34,28,0.07); text-align: center; }
+.testimonials-section h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--vert-fonce); margin-bottom: 16px; }
+.testimonials-section p { color: #666; font-size: 1rem; margin-bottom: 32px; }
+.google-rating { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 24px; }
+.stars { color: #fbbf24; font-size: 1.8rem; letter-spacing: 4px; }
+.rating-text { font-size: 1.1rem; color: var(--vert-fonce); font-weight: 600; }
+.testimonials-cta { font-size: 0.95rem; color: #666; margin-bottom: 24px; }
+
+/* FAQ */
+.faq-section { background: var(--blanc); border-radius: 16px; padding: 56px 48px; margin-bottom: 64px; box-shadow: 0 2px 16px rgba(0,34,28,0.07); }
+.faq-list { display: flex; flex-direction: column; gap: 12px; margin-top: 40px; }
+.faq-item { border: 1px solid #e8f0e8; border-radius: 12px; overflow: hidden; }
+.faq-question { background: var(--gris-clair); padding: 20px 24px; font-weight: 600; color: var(--vert-fonce); cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 0.95rem; transition: background 0.3s ease; user-select: none; }
+.faq-question:hover { background: #e8f0e8; }
+.faq-question .faq-icon { transition: transform 0.3s ease; color: var(--teal); }
+.faq-item.open .faq-question .faq-icon { transform: rotate(45deg); }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; padding: 0 24px; color: #555; font-size: 0.95rem; line-height: 1.7; }
+.faq-item.open .faq-answer { max-height: 300px; padding: 20px 24px; }
+
+/* CONTACT */
+.contact-section { background: linear-gradient(135deg, var(--vert-fonce) 0%, var(--teal) 100%); border-radius: 16px; padding: 56px 48px; margin-bottom: 64px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.contact-section h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--blanc); margin-bottom: 16px; }
+.contact-section > p { color: var(--bleu-clair); font-size: 1.05rem; margin-bottom: 32px; max-width: 700px; }
+.contact-info { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-bottom: 32px; width: 100%; max-width: 800px; }
+.contact-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.contact-icon { width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.13); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--blanc); }
+.contact-label { font-size: 0.75rem; color: var(--bleu-clair); text-transform: uppercase; letter-spacing: 1.5px; text-align: center; }
+.contact-value { color: var(--blanc); font-weight: 600; font-size: 0.95rem; text-align: center; }
+.contact-value a { color: var(--blanc); text-decoration: none; }
+.contact-value a:hover { text-decoration: underline; }
+.social-links { display: flex; justify-content: center; gap: 16px; margin-top: 32px; }
+.social-link { width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.13); display: flex; align-items: center; justify-content: center; color: var(--blanc); font-size: 1.3rem; text-decoration: none; border: 1px solid rgba(255,255,255,0.25); transition: all 0.3s ease; }
+.social-link:hover { background: rgba(255,255,255,0.25); transform: translateY(-3px); }
+
+/* INFOLETTRE */
+.newsletter-section { background: var(--blanc); border-radius: 16px; padding: 48px; margin-bottom: 64px; box-shadow: 0 2px 16px rgba(0,34,28,0.07); border-top: 4px solid var(--teal); }
+.newsletter-header { text-align: center; margin-bottom: 32px; }
+.newsletter-header h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--vert-fonce); margin-bottom: 16px; }
+.newsletter-header p { color: #666; font-size: 1rem; line-height: 1.7; max-width: 700px; margin: 0 auto; }
+.newsletter-form-container { max-width: 800px; margin: 0 auto; border-radius: 18px; overflow: hidden; }
+
+/* ANIMATIONS */
+html { scroll-behavior: smooth; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in { animation: fadeInUp 0.8s ease-out; }
+
+/* RESPONSIVE */
+@media(max-width: 900px) {
+  .philosophie-section { grid-template-columns: 1fr; }
+  .processus-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .processus-grid::before { display: none; }
+}
+@media(max-width: 768px) {
+  .hero h1 { font-size: 2rem; }
+  .hero p { font-size: 1rem; }
+  .section-title { font-size: 1.6rem; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .tools-grid { grid-template-columns: 1fr; }
+  .contact-info { grid-template-columns: 1fr; gap: 32px; }
+  .philosophie-section { padding: 32px 24px; }
+  .processus-section { padding: 40px 24px; }
+  .faq-section { padding: 40px 24px; }
+  .contact-section { padding: 40px 24px; }
+  .newsletter-section { padding: 32px 24px; }
+  .processus-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- 1. HERO -->
+<section class="hero">
+  <div class="hero-content fade-in">
+    <div class="hero-badge">Gestion de placements</div>
+    <h1>Faites croître votre patrimoine avec stratégie</h1>
+    <p>Des solutions de placement personnalisées, adaptées à votre profil et vos objectifs — avec un suivi continu et une transparence totale.</p>
+    <div class="hero-cta">
+      <a href="https://api.leadconnectorhq.com/widget/booking/Ji600NehzD0aMO3Dl5A5?backgroundColor=%23ffffff&primaryColor=%234e7a51FF&buttonText=Prendre+Rendez-vous&showCalendarTitle=true&showCalendarDescription=true&showCalendarDetails=true&default=false" class="btn btn-primary" target="_blank">Prendre rendez-vous</a>
+      <a href="#processus" class="btn btn-secondary">Voir le processus</a>
+    </div>
+  </div>
+</section>
+
+<main>
+
+  <!-- 2. CRÉDIBILITÉ -->
+  <section class="credibility fade-in">
+    <div class="cred-grid">
+      <div class="cred-item">
+        <div class="cred-icon"><i class="fas fa-calendar-alt"></i></div>
+        <div class="cred-label">Expérience</div>
+        <div class="cred-value">Depuis 2019</div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-icon"><i class="fas fa-chart-line"></i></div>
+        <div class="cred-label">Certification</div>
+        <div class="cred-value">Représentant de courtiers<br>(épargne collective)</div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-icon"><i class="fas fa-shield-alt"></i></div>
+        <div class="cred-label">Réglementation</div>
+        <div class="cred-value">Encadré par<br>l'AMF du Québec</div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-icon"><i class="fas fa-graduation-cap"></i></div>
+        <div class="cred-label">En cours</div>
+        <div class="cred-value">Planificateur financier<span class="badge-pending">d'ici 1 an</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. PHILOSOPHIE -->
+  <section class="philosophie-section">
+    <div class="philosophie-text">
+      <h2>Une gestion centrée sur vos objectifs réels</h2>
+      <p>Je ne crois pas aux solutions universelles. Chaque client a un profil, une tolérance au risque et des objectifs qui lui sont propres. Mon rôle est de les comprendre en profondeur, puis de construire une stratégie cohérente et évolutive.</p>
+      <p>Que ce soit pour la retraite, un projet immobilier ou la liberté financière, je sélectionne les fonds et véhicules les mieux adaptés à votre situation — et j'ajuste au fil du temps.</p>
+    </div>
+    <div class="philosophie-points">
+      <div class="philo-point">
+        <div class="philo-icon"><i class="fas fa-user-check"></i></div>
+        <div class="philo-content">
+          <h4>Approche personnalisée</h4>
+          <p>Analyse complète de votre profil avant toute recommandation</p>
+        </div>
+      </div>
+      <div class="philo-point">
+        <div class="philo-icon"><i class="fas fa-sync-alt"></i></div>
+        <div class="philo-content">
+          <h4>Suivi continu</h4>
+          <p>Révisions régulières pour rester aligné avec vos objectifs</p>
+        </div>
+      </div>
+      <div class="philo-point">
+        <div class="philo-icon"><i class="fas fa-eye"></i></div>
+        <div class="philo-content">
+          <h4>Transparence totale</h4>
+          <p>Frais clairs, recommandations expliquées, aucun jargon inutile</p>
+        </div>
+      </div>
+      <div class="philo-point">
+        <div class="philo-icon"><i class="fas fa-balance-scale"></i></div>
+        <div class="philo-content">
+          <h4>Gestion du risque</h4>
+          <p>Diversification adaptée à votre horizon et tolérance aux fluctuations</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CE QUE JE FAIS POUR VOUS -->
+  <section id="services">
+    <h2 class="section-title">Ce que je fais pour vous</h2>
+    <p class="section-subtitle">Un accompagnement complet, de l'analyse initiale au suivi à long terme</p>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-search-dollar"></i></div>
+        <h3>Analyse de profil</h3>
+        <p>Évaluation complète de votre situation financière, de vos objectifs, de votre horizon de placement et de votre tolérance au risque pour construire une base solide.</p>
+      </div>
+      <div class="card teal-top">
+        <div class="card-icon"><i class="fas fa-layer-group"></i></div>
+        <h3>Sélection de fonds</h3>
+        <p>Choix rigoureux des fonds communs de placement et véhicules d'investissement (REER, CELI, REEE, non enregistré) selon votre profil et vos objectifs fiscaux.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-chart-pie"></i></div>
+        <h3>Diversification</h3>
+        <p>Construction d'un portefeuille équilibré entre classes d'actifs, secteurs et zones géographiques pour optimiser le rendement selon votre tolérance au risque.</p>
+      </div>
+      <div class="card teal-top">
+        <div class="card-icon"><i class="fas fa-sync-alt"></i></div>
+        <h3>Suivi et rééquilibrage</h3>
+        <p>Revues périodiques du portefeuille pour maintenir l'alignement avec vos objectifs, ajuster selon l'évolution des marchés et de votre situation personnelle.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-piggy-bank"></i></div>
+        <h3>Optimisation fiscale</h3>
+        <p>Utilisation stratégique des comptes enregistrés (REER, CELI, REEE) pour maximiser les avantages fiscaux et accélérer la croissance de votre épargne.</p>
+      </div>
+      <div class="card teal-top">
+        <div class="card-icon"><i class="fas fa-comments-dollar"></i></div>
+        <h3>Accompagnement continu</h3>
+        <p>Disponibilité pour répondre à vos questions, vous accompagner lors d'événements de vie importants et ajuster la stratégie selon l'évolution de vos priorités.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. PROCESSUS -->
+  <section id="processus" class="processus-section">
+    <h2 class="section-title">Comment ça fonctionne</h2>
+    <p class="section-subtitle">Un processus clair et structuré pour démarrer sereinement</p>
+    <div class="processus-grid">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h4>Rencontre initiale</h4>
+        <p>Discussion sur vos objectifs et votre situation — sans engagement</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h4>Analyse du profil</h4>
+        <p>Évaluation de votre tolérance au risque et horizon de placement</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h4>Proposition</h4>
+        <p>Stratégie personnalisée avec sélection des fonds recommandés</p>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <h4>Mise en place</h4>
+        <p>Ouverture des comptes, transfert des actifs et démarrage des cotisations</p>
+      </div>
+      <div class="step">
+        <div class="step-number">5</div>
+        <h4>Suivi continu</h4>
+        <p>Revues régulières et ajustements proactifs selon votre évolution</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. OUTILS GRATUITS -->
+  <section id="outils">
+    <h2 class="section-title">Outils gratuits</h2>
+    <p class="section-subtitle">Estimez et visualisez le potentiel de vos placements</p>
+    <div class="tools-grid">
+      <a href="https://www.nicolasstoltz.com/calculateur-intrets-composes" class="tool-card" target="_top">
+        <div class="tool-icon"><i class="fas fa-piggy-bank"></i></div>
+        <h4>Calculateur d'intérêts composés</h4>
+        <p>Projetez la croissance de vos investissements dans le temps</p>
+      </a>
+      <a href="https://www.nicolasstoltz.com/calculatrice-emprunt" class="tool-card" target="_top">
+        <div class="tool-icon"><i class="fas fa-money-bill-wave"></i></div>
+        <h4>Calculateur de coût d'emprunt</h4>
+        <p>Estimez le coût réel de vos emprunts et financements</p>
+      </a>
+      <a href="https://www.nicolasstoltz.com/table-impots" class="tool-card" target="_top">
+        <div class="tool-icon"><i class="fas fa-file-invoice"></i></div>
+        <h4>Table d'impôts — Québec</h4>
+        <p>Consultez les tranches d'imposition pour planifier vos retraits</p>
+      </a>
+      <a href="https://www.nicolasstoltz.com/honoraires" class="tool-card" target="_top">
+        <div class="tool-icon"><i class="fas fa-gem"></i></div>
+        <h4>Frais de service</h4>
+        <p>Structure tarifaire transparente avec réductions progressives</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- 7. TÉMOIGNAGES -->
+  <section class="testimonials-section">
+    <h2>Ce que disent mes clients</h2>
+    <p>Découvrez les avis authentiques de clients accompagnés</p>
+    <div class="google-rating">
+      <div class="stars">★★★★★</div>
+      <div class="rating-text">5.0 / 5</div>
+    </div>
+    <p class="testimonials-cta">Consultez mes avis clients vérifiés sur Google</p>
+    <a href="#" class="btn btn-primary" target="_blank">
+      <i class="fab fa-google"></i> Voir les avis Google
+    </a>
+  </section>
+
+  <!-- 8. FAQ -->
+  <section class="faq-section">
+    <h2 class="section-title">Questions fréquentes</h2>
+    <p class="section-subtitle">Les réponses aux questions les plus courantes sur la gestion de placements</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Quel est le montant minimum pour commencer à investir ?<i class="fas fa-plus faq-icon"></i></div>
+        <div class="faq-answer">Il n'y a pas de montant minimum strict. Des solutions existent dès quelques centaines de dollars par mois en cotisations régulières. L'important est de commencer tôt et d'adopter une discipline d'épargne constante.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">REER ou CELI — lequel choisir ?<i class="fas fa-plus faq-icon"></i></div>
+        <div class="faq-answer">Le choix dépend de votre situation fiscale actuelle et future. Le REER est généralement avantageux si vous êtes dans une tranche d'imposition élevée maintenant. Le CELI est plus flexible et idéal si votre taux marginal sera similaire ou plus élevé à la retraite. Une stratégie combinée est souvent optimale.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Comment sont rémunérés vos services ?<i class="fas fa-plus faq-icon"></i></div>
+        <div class="faq-answer">Ma rémunération provient des frais intégrés aux fonds de placement (frais de gestion). Il n'y a aucun frais directs supplémentaires pour l'ouverture de compte, les conseils ou les suivis. La structure tarifaire complète est disponible sur ma page honoraires.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Puis-je transférer mes placements existants ?<i class="fas fa-plus faq-icon"></i></div>
+        <div class="faq-answer">Oui, il est possible de transférer vos REER, CELI ou autres placements existants sans déclencher d'imposition (transfert en nature ou en argent selon les cas). Je m'occupe de toute la coordination avec l'institution actuelle pour faciliter le processus.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">À quelle fréquence aurons-nous des rencontres de suivi ?<i class="fas fa-plus faq-icon"></i></div>
+        <div class="faq-answer">Je recommande au minimum une revue annuelle, mais la fréquence s'adapte à vos besoins. En cas d'événement de vie majeur (mariage, achat immobilier, changement d'emploi, héritage), il est préférable de se rencontrer rapidement pour ajuster la stratégie.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. PRÊT À PASSER À L'ACTION -->
+  <section class="contact-section">
+    <h2>Prêt à faire travailler votre argent ?</h2>
+    <p>Discutons de vos objectifs de placement lors d'une première rencontre sans engagement</p>
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value"><a href="mailto:nstoltz@sentinelgroup.ca">nstoltz@sentinelgroup.ca</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+        <div class="contact-label">Téléphone</div>
+        <div class="contact-value"><a href="tel:5819966708">581-996-6708</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="contact-label">Localisation</div>
+        <div class="contact-value">Québec, QC</div>
+      </div>
+    </div>
+    <a href="https://api.leadconnectorhq.com/widget/booking/Ji600NehzD0aMO3Dl5A5?backgroundColor=%23ffffff&primaryColor=%234e7a51FF&buttonText=Prendre+Rendez-vous&showCalendarTitle=true&showCalendarDescription=true&showCalendarDetails=true&default=false" class="btn btn-primary" target="_blank">Prendre rendez-vous</a>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/nicolas-stoltz-4a5b92190/" target="_blank" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.facebook.com/nstoltzfinances/" target="_blank" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/nicolas.stoltz/" target="_blank" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+  </section>
+
+  <!-- 10. INFOLETTRE -->
+  <section class="newsletter-section">
+    <div class="newsletter-header">
+      <h2>Restez informé</h2>
+      <p>Chaque semaine, recevez un condensé de l'actualité économique et des conseils pratiques pour optimiser vos finances personnelles.</p>
+    </div>
+    <div class="newsletter-form-container">
+      <iframe
+        src="https://api.leadconnectorhq.com/widget/form/lukuqxjwoKowYqsh773U"
+        style="width:100%;height:551px;border:none;border-radius:20px"
+        scrolling="no"
+        id="inline-lukuqxjwoKowYqsh773U"
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-trigger-value=""
+        data-activation-type="alwaysActivated"
+        data-activation-value=""
+        data-deactivation-type="neverDeactivate"
+        data-deactivation-value=""
+        data-form-name="Infolettre Form"
+        data-height="700"
+        data-layout-iframe-id="inline-lukuqxjwoKowYqsh773U"
+        data-form-id="lukuqxjwoKowYqsh773U"
+        title="Infolettre Form"
+      ></iframe>
+      <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+    </div>
+  </section>
+
+</main>
+
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
+
+<script>
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href !== '#') {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('fade-in');
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('section, .card, .tool-card, .step').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
